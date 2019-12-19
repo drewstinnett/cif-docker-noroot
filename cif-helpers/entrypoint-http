@@ -1,0 +1,18 @@
+#!/bin/sh
+set -e
+set -x
+
+export CIF_RUNTIME_PATH=/var/lib/cif
+export CIF_DATA_PATH=/var/lib/cif
+export CIF_HUNTER_ADVANCED=1
+export CIF_HUNTER_EXCLUDE="osint.bambenekconsulting.com:dga"
+
+
+gunicorn \
+    -w 4 --max-requests-jitter 5 -b 0.0.0.0:5000 cif.httpd:app \
+    --log-level DEBUG --preload --max-requests 25 \
+    --graceful-timeout 120 --keep-alive 30 --timeout 150 --log-level DEBUG \
+    --worker-tmp-dir /dev/shm \
+    --worker-class gthread \
+    --access-logfile - \
+    -p /var/run/cif/gunicorn.pid

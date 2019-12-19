@@ -1,0 +1,25 @@
+---
+
+version: '3'
+services:
+  cif-http:
+    build: .
+    restart: on-failure
+    ports:
+      - 5000:5000
+    environment:
+      CIF_TOKEN_HUNTER: "foo"
+      CIF_TOKEN_ADMIN: "bar"
+      CIF_TOKEN_SMRT: "baz"
+      CIF_TOKEN_HTTP: "quux"
+    volumes:
+      - cif-config:/etc/cif
+      - cif-logs:/var/log/cif
+      - cif-db:/var/lib/cif
+      - geoip:/usr/share/GeoIP
+volumes:
+  cif-config:
+  cif-logs:
+  cif-db:
+  esdata:
+  geoip:
