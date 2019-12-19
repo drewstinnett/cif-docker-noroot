@@ -15,9 +15,6 @@ ENV ARCHIVE_URL=https://github.com/csirtgadgets/bearded-avenger/archive
 
 VOLUME /usr/share/GeoIP
 
-EXPOSE 5000
-
-
 RUN apk add --update \
     shadow g++ make python-dev shadow libxml2-dev libxslt-dev \
     bash libffi-dev openssl-dev wget geoip curl && \
@@ -47,4 +44,4 @@ RUN apk add --update \
 
 COPY cif-helpers /cif-helpers
 USER cif
-ENTRYPOINT ["/cif-helpers/entrypoint"]
+ENTRYPOINT ["/cif-helpers/entrypoint-http"]

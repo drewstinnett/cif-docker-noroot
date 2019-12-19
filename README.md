@@ -8,6 +8,21 @@ as non-root users
 You can use the included `docker-compose.yaml` to test out functionality, and
 get a feel for other containers that will be needed here
 
+## Usage
+
+Because both the http and router processes use the same docker image, you can
+specify the entrypoint based on which service you need to run.  There is an
+example of this in the `docker-compose.yaml` file, but for reference, the entry
+points are:
+
+```
+/cif-helpers/entrypoint-http
+```
+
+```
+/cif-helpers/entrypoint-router
+```
+
 ## Origin
 
 Originally used the [sfinlon/cif-docker](https://github.com/sfinlon/cif-docker)
