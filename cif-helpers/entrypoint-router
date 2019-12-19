@@ -20,7 +20,15 @@ export CIF_DATA_PATH=/var/lib/cif
 export CIF_ROUTER_TRACE=1
 export CIF_ROUTER_PIDFILE=/tmp/cif_router.pid
 export CIF_HUNTER_ADVANCED=1
-export CIF_HUNTER_EXCLUDE="osint.bambenekconsulting.com:dga"
+
+# TODO: Replace this with a script of some sort, this is aweful
+if [[ ! -z "${CIF_HUNTER_WHITELIST}" ]]; then
+    cd /inactive_hunters
+    for HUNTER in $(echo $CIF_HUNTER_WHITELIST | sed "s/,/ /g"); do
+        echo "Enabling hunter ${HUNTER}"
+        mv ${HUNTER} /usr/local/lib/python3.6/site-packages/cif-${CIF_VERSION}-py3.6.egg/cif/hunter/
+    done
+fi
 
 cat << EOF > /etc/cif/cif-router.yml
 ---

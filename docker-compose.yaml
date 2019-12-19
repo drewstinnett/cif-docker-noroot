@@ -27,6 +27,7 @@ services:
       CIF_TOKEN_ADMIN: "bar"
       CIF_TOKEN_SMRT: "baz"
       CIF_TOKEN_HTTP: "quux"
+      CIF_HUNTER_WHITELIST: "logging_hunter.py"
     entrypoint: /cif-helpers/entrypoint-router
     volumes:
       - cif-config:/etc/cif
